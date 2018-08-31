@@ -1,0 +1,13 @@
+server:
+  port: 8888
+
+spring:
+  activemq:
+    broker-url: failover://tcp://localhost:61616
+    user:
+    password:
+    pool:
+      session-cache-size: 100
+    testQueueName: cdfive
+  aop:
+    proxy-target-class: true
