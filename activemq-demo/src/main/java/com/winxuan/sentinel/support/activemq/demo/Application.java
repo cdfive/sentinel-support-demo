@@ -1,6 +1,5 @@
 package com.winxuan.sentinel.support.activemq.demo;
 
-
 import com.winxuan.sentinel.support.SentinelSupportConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
