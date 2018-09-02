@@ -5,6 +5,8 @@ import com.winxuan.sentinel.support.SentinelSupportConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration;
 import org.springframework.boot.autoconfigure.jms.JmsAutoConfiguration;
 import org.springframework.context.annotation.ImportResource;
 
@@ -13,7 +15,7 @@ import org.springframework.context.annotation.ImportResource;
  * @date 2018-08-29
  */
 @Slf4j
-@SpringBootApplication(scanBasePackages = {"com.winxuan"}, exclude = {JmsAutoConfiguration.class})
+@SpringBootApplication(scanBasePackages = {"com.winxuan"}, exclude = {JmsAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class, JdbcTemplateAutoConfiguration.class})
 @ImportResource("classpath:conf/context.xml")
 public class Application {
 
