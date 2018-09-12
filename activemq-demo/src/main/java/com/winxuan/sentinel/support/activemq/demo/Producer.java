@@ -16,7 +16,8 @@ public class Producer {
         String queueName = "cdfive";
         int messageCount = 2000;
 
-        String brokerUrl = ActiveMQConnection.DEFAULT_BROKER_URL;// failover://tcp://localhost:61616
+//        String brokerUrl = ActiveMQConnection.DEFAULT_BROKER_URL;// failover://tcp://localhost:61616
+        String brokerUrl = "failover:(tcp://10.100.12.111:61616,tcp://10.100.12.113:61616,tcp://10.100.12.114:61616)?timeout=10000";
 
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(brokerUrl);
         connectionFactory.setUseAsyncSend(true);

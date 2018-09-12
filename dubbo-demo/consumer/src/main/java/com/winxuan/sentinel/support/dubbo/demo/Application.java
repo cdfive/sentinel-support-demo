@@ -41,7 +41,7 @@ public class Application {
 
         long start = System.currentTimeMillis();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1; i++) {
             final int index = i + 1;
             pool.submit(() -> {
                 try {
