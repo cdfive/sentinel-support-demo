@@ -3,8 +3,7 @@ server:
 
 spring:
   activemq:
-#    broker-url: failover://tcp://localhost:61616
-    broker-url: failover:(tcp://10.100.12.111:61616,tcp://10.100.12.113:61616,tcp://10.100.12.114:61616)?timeout=10000
+    broker-url: failover://tcp://localhost:61616
     user:
     password:
     pool:

@@ -16,8 +16,6 @@ public class FooServiceImpl implements FooService {
     public String hello(String name) {
         long start = System.currentTimeMillis();
 
-        if (true) throw new RuntimeException("debug");
-
         try {
             Thread.sleep(new Random().nextInt(3000));
         } catch (InterruptedException e) {
