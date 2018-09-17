@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.jms.JmsAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -29,6 +30,8 @@ public class Application {
         log.info(SentinelSupportConstant.LOG_PRIFEX + "dubbo-demo[consumer] application started!");
 
         test(ctx);
+
+        System.exit(0);
     }
 
     /**
@@ -41,7 +44,9 @@ public class Application {
 
         long start = System.currentTimeMillis();
 
-        for (int i = 0; i < 100; i++) {
+        int count = 100;
+        CountDownLatch latch = new CountDownLatch(count);
+        for (int i = 0; i < count; i++) {
             final int index = i + 1;
             pool.submit(() -> {
                 try {
@@ -50,13 +55,17 @@ public class Application {
                 } catch (Exception e) {
 //                    e.printStackTrace();
                     System.out.println("[exception]" + e.getClass().getName() + "[" + index + "]");
+                } finally {
+                    latch.countDown();
                 }
             });
         }
 
         try {
-            pool.shutdown();
-            pool.awaitTermination(1, TimeUnit.MINUTES);
+//            pool.shutdown();
+//            pool.awaitTermination(1, TimeUnit.MINUTES);
+            latch.await();
+            pool.shutdownNow();
             System.out.println("done " + (System.currentTimeMillis() - start) / 1000.0 + "s");
         } catch (InterruptedException e) {
             e.printStackTrace();

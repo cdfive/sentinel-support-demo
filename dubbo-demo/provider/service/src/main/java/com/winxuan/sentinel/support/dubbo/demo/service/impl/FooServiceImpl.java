@@ -17,7 +17,7 @@ public class FooServiceImpl implements FooService {
         long start = System.currentTimeMillis();
 
         try {
-            Thread.sleep(new Random().nextInt(3000));
+            Thread.sleep(new Random().nextInt(50));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
